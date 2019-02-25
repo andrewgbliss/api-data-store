@@ -38,7 +38,7 @@ const users = await ApiDataStore.fetch('/api/v1/users', {
 });
 ```
 
-# Setting a timeout on the cache in minutes
+# Setting a timeout on the cache in milliseconds
 
 ```
 import axios from 'axios';
@@ -48,11 +48,13 @@ ApiDataStore.setFetchMethod(axois.get);
 
 const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,
-  timeout: 5
+  timeout: 1000 * 60 * 5 // 5 minutes
 });
 ```
 
 # Using an in memory custom storage driver
+
+The API Data Store uses the localStorage interface. If you need to create your own custom storage driver use the same methods as localStorage.
 
 ```
 import axios from 'axios';
@@ -64,6 +66,6 @@ ApiDataStore.setStorageDriver(new MemoryDataStore());
 
 const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,
-  timeout: 5,
+  timeout: 1000 * 60 * 5 // 5 minutes
 });
 ```
