@@ -9,7 +9,7 @@ A Data Store that will run the same API endpoint once, cache results, and expire
 import axios from 'axios';
 import ApiDataStore from 'api-data-store';
 
-const users = ApiDataStore.fetch('/api/v1/users', {
+const users = await ApiDataStore.fetch('/api/v1/users', {
   fetchMethod: axios.get,
 });
 ```
@@ -22,7 +22,7 @@ import ApiDataStore from 'api-data-store';
 
 ApiDataStore.setFetchMethod(axois.get);
 
-const users = ApiDataStore.fetch('/api/v1/users');
+const users = await ApiDataStore.fetch('/api/v1/users');
 ```
 
 # Caching results in the default localStorage driver
@@ -33,7 +33,7 @@ import ApiDataStore from 'api-data-store';
 
 ApiDataStore.setFetchMethod(axois.get);
 
-const users = ApiDataStore.fetch('/api/v1/users', {
+const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,
 });
 ```
@@ -46,7 +46,7 @@ import ApiDataStore from 'api-data-store';
 
 ApiDataStore.setFetchMethod(axois.get);
 
-const users = ApiDataStore.fetch('/api/v1/users', {
+const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,
   timeout: 5
 });
@@ -62,7 +62,7 @@ import MemoryDataStore from 'api-data-store/memoryDataStore';
 ApiDataStore.setFetchMethod(axois.get);
 ApiDataStore.setStorageDriver(new MemoryDataStore());
 
-const users = ApiDataStore.fetch('/api/v1/users', {
+const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,
   timeout: 5,
 });
