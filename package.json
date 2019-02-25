@@ -1,6 +1,6 @@
 {
   "name": "api-data-store",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "API Data Store",
   "main": "src/index.js",
   "scripts": {

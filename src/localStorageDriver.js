@@ -7,7 +7,7 @@ const keys = [];
 const setItem = (key, value) => {
   const item = { value, timestamp: moment().unix() };
   localStorage.setItem(PREFIX + key, JSON.stringify(item));
-  keys.push(url);
+  keys.push(key);
 };
 
 const getItem = key => {
