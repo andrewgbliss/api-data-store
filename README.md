@@ -52,7 +52,7 @@ const users = await ApiDataStore.fetch('/api/v1/users', {
 });
 ```
 
-# Using a in memory custom storage driver
+# Using an in memory custom storage driver
 
 ```
 import axios from 'axios';
