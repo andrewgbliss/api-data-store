@@ -1,0 +1,34 @@
+{
+  "name": "api-data-store",
+  "version": "0.1.0",
+  "description": "API Data Store",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewgbliss/api-data-store.git"
+  },
+  "author": "Andrew Bliss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewgbliss/api-data-store/issues"
+  },
+  "homepage": "https://github.com/andrewgbliss/api-data-store#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.14.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "mocha": "^6.0.1",
+    "prettier": "^1.13.4",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
+  }
+}
