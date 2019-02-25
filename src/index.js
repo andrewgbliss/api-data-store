@@ -29,7 +29,7 @@ const fetch = async (url, options = {}) => {
       return get(item, 'value');
     }
   }
-  const results = await resolver({ ...options, fetchMethod });
+  const results = await resolver(url, { ...options, fetchMethod });
   if (cache) {
     storageDriver.setItem(url, results);
   }
