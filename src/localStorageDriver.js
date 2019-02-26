@@ -2,37 +2,44 @@ const moment = require('moment');
 const attempt = require('lodash/attempt');
 
 const PREFIX = 'api-data-store:';
-const keys = [];
 
-const setItem = (key, value) => {
-  const item = { value, timestamp: moment().unix() };
-  localStorage.setItem(PREFIX + key, JSON.stringify(item));
-  keys.push(key);
-};
+class LocalStorageDriver {
+  constructor() {
+    this.keys = Object.keys(localStorage);
+  }
 
-const getItem = key => {
-  const item = localStorage.getItem(PREFIX + key);
-  return attempt(JSON.parse, item);
-};
+  clear() {
+    this.keys.forEach(key => {
+      localStorage.removeItem(PREFIX + key);
+    });
+  }
 
-const hasItem = key => {
-  return getItem(key) !== undefined && getItem(key) !== null;
-};
+  getItem(key) {
+    const item = localStorage.getItem(PREFIX + key);
+    return attempt(JSON.parse, item);
+  }
 
-const reset = () => {
-  keys.forEach(key => {
-    localStorage.removeItem(PREFIX + key);
-  });
-};
+  setItem(key, value) {
+    const item = { value, timestamp: moment().unix() };
+    localStorage.setItem(PREFIX + key, JSON.stringify(item));
+    keys.push(key);
+  }
 
-const getKeys = () => {
-  return keys;
-};
+  removeItem(key) {
+    // delete this.store[key];
+  }
 
-module.exports = {
-  setItem,
-  getItem,
-  hasItem,
-  reset,
-  getKeys,
-};
+  reset() {
+    this.clear();
+  }
+
+  hasItem(key) {
+    return this.getItem(key) !== undefined && this.getItem(key) !== null;
+  }
+
+  getKeys() {
+    return this.keys;
+  }
+}
+
+module.exports = LocalStorageDriver;

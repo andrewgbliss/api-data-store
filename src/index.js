@@ -1,6 +1,6 @@
 const moment = require('moment');
 const get = require('lodash/get');
-const localStorageDriver = require('./localStorageDriver');
+const LocalStorageDriver = require('./localStorageDriver');
 const MemoryStorageDriver = require('./memoryStorageDriver');
 const resolver = require('./resolver');
 const stats = require('./stats');
@@ -8,7 +8,7 @@ const stats = require('./stats');
 let fetchMethod;
 let storageDriver =
   typeof localStorage !== 'undefined'
-    ? localStorageDriver
+    ? new LocalStorageDriver()
     : new MemoryStorageDriver();
 
 const isExpired = (timestamp, expires) => {
