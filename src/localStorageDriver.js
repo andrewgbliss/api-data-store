@@ -11,7 +11,7 @@ class LocalStorageDriver {
       return key.indexOf(PREFIX) === 0;
     });
     keys.forEach(key => {
-      localStorage.removeItem(PREFIX + key);
+      localStorage.removeItem(key);
     });
   }
 
