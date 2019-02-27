@@ -49,6 +49,8 @@ const hasItem = key => storageDriver.hasItem(key);
 
 const getKeys = () => storageDriver.getKeys();
 
+const removeItem = key => storageDriver.removeItem(key);
+
 module.exports = {
   stats: stats.stats,
   fetch,
@@ -57,4 +59,5 @@ module.exports = {
   reset,
   hasItem,
   getKeys,
+  removeItem,
 };
