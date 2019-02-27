@@ -31,7 +31,7 @@ class LocalStorageDriver {
 
   removeItem(key) {
     localStorage.removeItem(PREFIX + key);
-    this.keys = pull(this.keys, PREFIX + key);
+    this.keys = pull(this.keys, key);
   }
 
   reset() {
