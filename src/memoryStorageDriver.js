@@ -1,5 +1,7 @@
 const moment = require('moment');
 
+const PREFIX = 'api-data-store:';
+
 class MemoryStorageDriver {
   constructor() {
     this.store = {};
@@ -10,16 +12,16 @@ class MemoryStorageDriver {
   }
 
   getItem(key) {
-    return this.store[key] || null;
+    return this.store[PREFIX + key] || null;
   }
 
   setItem(key, value) {
     const item = { value, timestamp: moment().unix() };
-    this.store[key] = item;
+    this.store[PREFIX + key] = item;
   }
 
   removeItem(key) {
-    delete this.store[key];
+    delete this.store[PREFIX + key];
   }
 
   reset() {
