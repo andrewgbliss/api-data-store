@@ -1,11 +1,15 @@
 const moment = require('moment');
 const attempt = require('lodash/attempt');
+const pull = require('lodash/pull');
+const filter = require('lodash/filter');
 
 const PREFIX = 'api-data-store:';
 
 class LocalStorageDriver {
   constructor() {
-    this.keys = Object.keys(localStorage);
+    this.keys = filter(Object.keys(localStorage), key => {
+      return key.indexOf(PREFIX) === 0;
+    });
   }
 
   clear() {
@@ -22,11 +26,12 @@ class LocalStorageDriver {
   setItem(key, value) {
     const item = { value, timestamp: moment().unix() };
     localStorage.setItem(PREFIX + key, JSON.stringify(item));
-    keys.push(key);
+    this.keys.push(key);
   }
 
   removeItem(key) {
-    // delete this.store[key];
+    localStorage.removeItem(PREFIX + key);
+    this.keys = pull(this.keys, PREFIX + key);
   }
 
   reset() {
