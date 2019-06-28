@@ -1,7 +1,7 @@
 const moment = require('moment');
 const promises = {};
 
-module.exports = async (url, options) => {
+const resolver = async (url, options) => {
   const { params, fetchMethod } = options;
   if (promises[url]) {
     if (promises[url].resolved) {
@@ -21,3 +21,5 @@ module.exports = async (url, options) => {
   };
   return promise;
 };
+
+module.exports = resolver;
