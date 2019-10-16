@@ -1,4 +1,5 @@
 # api-data-store
+
 API Data store
 
 A Data Store that will run the same API endpoint once, cache results, and expire after a timeout.
@@ -38,14 +39,18 @@ const users = await ApiDataStore.fetch('/api/v1/users', {
 });
 ```
 
+# Setting a prefix for local storage
+
+```
+ApiDataStore.setPrefix('your-api-name:');
+
+// local storage:
+// your-api-name:/api/v1/users = { ...data }
+```
+
 # Setting a timeout on the cache in milliseconds
 
 ```
-import axios from 'axios';
-import ApiDataStore from 'api-data-store';
-
-ApiDataStore.setFetchMethod(axois.get);
-
 const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,
   timeout: 1000 * 60 * 5 // 5 minutes
@@ -62,7 +67,7 @@ import ApiDataStore from 'api-data-store';
 import MemoryDataStore from 'api-data-store/memoryDataStore';
 
 ApiDataStore.setFetchMethod(axois.get);
-ApiDataStore.setStorageDriver(new MemoryDataStore());
+ApiDataStore.setStorageDriver(MemoryDataStore);
 
 const users = await ApiDataStore.fetch('/api/v1/users', {
   cache: true,

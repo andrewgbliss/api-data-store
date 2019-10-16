@@ -1,40 +1,45 @@
 const moment = require('moment');
 
-const PREFIX = 'api-data-store:';
+let store = {};
+let prefix = '';
 
-class MemoryStorageDriver {
-  constructor() {
-    this.store = {};
-  }
+const clear = () => {
+  store = {};
+};
 
-  clear() {
-    this.store = {};
-  }
+const MemoryStorageDriver = {
+
+  clear,
+
+  setPrefix(_prefix) {
+    prefix = _prefix;
+  },
 
   getItem(key) {
-    return this.store[PREFIX + key] || null;
-  }
+    return store[prefix + key] || null;
+  },
 
   setItem(key, value) {
     const item = { value, timestamp: moment().unix() };
-    this.store[PREFIX + key] = item;
-  }
+    store[prefix + key] = item;
+  },
 
   removeItem(key) {
-    delete this.store[PREFIX + key];
-  }
+    delete store[prefix + key];
+  },
 
   reset() {
-    this.clear();
-  }
+    clear();
+  },
 
   hasItem(key) {
-    return this.getItem(key) !== undefined && this.getItem(key) !== null;
-  }
+    let value = store[prefix + key] || null;
+    return value !== undefined && value !== null;
+  },
 
   getKeys() {
-    return Object.keys(this.store);
-  }
-}
+    return Object.keys(store);
+  },
+};
 
 module.exports = MemoryStorageDriver;
